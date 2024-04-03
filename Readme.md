@@ -2,8 +2,7 @@
 
 ## Getting a API key
 
-You need to request your websocket key on our
-[Webpage](https://www.hyperate.io/api).
+You need to request your websocket key on our [website](https://www.hyperate.io/api).
 
 ## I don't have a compatible device! What should I do?
 
@@ -43,10 +42,22 @@ This would be the correct message to join the "internal-testing" channel:
 }
 ```
 
-### Send heartbeat
+### Receiving data
 
-Phoenix expects that you send the heartbeat every 10 seconds otherwise the
-connection will be closed.
+Every time the user updates their heartbeat the following JSON will be send from the server to the client:
+
+```json
+{
+	"event": "hr_update",
+	"payload": { "hr": 79 },
+	"ref": null,
+	"topic": "hr:internal-testing"
+}
+```
+
+### Send keep-alive packet
+
+Phoenix expects that you send the keep-alive packet every 10 seconds otherwise the connection will be closed.
 
 ```json
 {
