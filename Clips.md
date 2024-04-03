@@ -1,6 +1,6 @@
 # HypeRate DevDocs
 
-## Getting a API key
+## Getting an API key
 
 You need to request your websocket key on our [website](https://www.hyperate.io/api).
 
@@ -12,7 +12,7 @@ URL: `wss://app.hyperate.io/socket/websocket?token=<MY-WEBSOCKET-KEY>`
 
 ### Join Channel
 
-You need to join the appropiate channel before any data will be send to your
+You need to join the appropiate channel before any data will be sent to your
 client.
 
 To do this you need to send the following JSON message:
