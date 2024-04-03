@@ -41,6 +41,16 @@ This would be the correct message to join the "internal-testing" channel:
 
 Every time the user creates a clip the following JSON will be send from the server to the client:
 
+HINT: The `twitch_slug` key in the `payload` object is the slug directly from Twitch.
+
+You would build the correct URL like this:
+
+`https://clips.twitch.tv/<twitch_slug>`
+
+Example with the slug from below:
+
+`https://clips.twitch.tv/FuriousExuberantTruffleCmonBruh-AmSuUmskamv8RPin`
+
 ```json
 {
 	"ref": null,
