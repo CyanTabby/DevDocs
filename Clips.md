@@ -1,13 +1,8 @@
 # HypeRate DevDocs
 
-## Getting an API key
+## Getting a API key
 
 You need to request your websocket key on our [website](https://www.hyperate.io/api).
-
-## I don't have a compatible device! What should I do?
-
-The API sends a random heartbeat between 60 and 80 every second to the
-`internal-testing` device id.
 
 ## Connecting to the API
 
@@ -17,14 +12,14 @@ URL: `wss://app.hyperate.io/socket/websocket?token=<MY-WEBSOCKET-KEY>`
 
 ### Join Channel
 
-You need to join the appropiate channel before any data will be sent to your
+You need to join the appropiate channel before any data will be send to your
 client.
 
 To do this you need to send the following JSON message:
 
 ```json
 {
-	"topic": "hr:<ID>",
+	"topic": "clips:<ID>",
 	"event": "phx_join",
 	"payload": {},
 	"ref": 0
@@ -35,7 +30,7 @@ This would be the correct message to join the "internal-testing" channel:
 
 ```json
 {
-	"topic": "hr:internal-testing",
+	"topic": "clips:internal-testing",
 	"event": "phx_join",
 	"payload": {},
 	"ref": 0
@@ -44,14 +39,26 @@ This would be the correct message to join the "internal-testing" channel:
 
 ### Receiving data
 
-Every time the user updates their heartbeat the following JSON will be send from the server to the client:
+Every time the user creates a clip the following JSON will be send from the server to the client:
+
+HINT: The `twitch_slug` key in the `payload` object is the slug directly from Twitch.
+
+You would build the correct URL like this:
+
+`https://clips.twitch.tv/<twitch_slug>`
+
+Example with the slug from below:
+
+`https://clips.twitch.tv/FuriousExuberantTruffleCmonBruh-AmSuUmskamv8RPin`
 
 ```json
 {
-	"event": "hr_update",
-	"payload": { "hr": 79 },
 	"ref": null,
-	"topic": "hr:internal-testing"
+	"payload": {
+		"twitch_slug": "FuriousExuberantTruffleCmonBruh-AmSuUmskamv8RPin"
+	},
+	"topic": "clips:internal-testing",
+	"event": "clip:created"
 }
 ```
 
@@ -74,7 +81,7 @@ In case you only want to leave a joined channel you can send the following messa
 
 ```json
 {
-	"topic": "hr:<ID>",
+	"topic": "clips:<ID>",
 	"event": "phx_leave",
 	"payload": {},
 	"ref": 0
@@ -85,7 +92,7 @@ This would be the correct message to leave the "internal-testing" channel:
 
 ```json
 {
-	"topic": "hr:internal-testing",
+	"topic": "clips:internal-testing",
 	"event": "phx_leave",
 	"payload": {},
 	"ref": 0
