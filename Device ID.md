@@ -23,3 +23,14 @@ In this case the session ID is `1234`.
 The WearOS app is displaying the following text: `Session ID: 1234`
 
 In this case the session ID is `1234`.
+
+## Known ID lengths
+
+| Name              | Length |
+| :---------------- | :----: |
+| Android           |   3    |
+| iOS / Apple Watch |   4    |
+| Garmin            |   5    |
+| wearOS            |   6    |
+| Web Bluetooth     |   7    |
+| FitBit            |   8    |
